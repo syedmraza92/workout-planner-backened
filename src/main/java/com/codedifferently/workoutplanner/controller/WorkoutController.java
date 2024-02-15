@@ -1,6 +1,7 @@
 package com.codedifferently.workoutplanner.controller;
 
 import com.codedifferently.workoutplanner.model.Workout;
+import com.codedifferently.workoutplanner.model.WorkoutInput;
 import com.codedifferently.workoutplanner.service.WorkoutService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -52,5 +53,12 @@ public class WorkoutController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @PostMapping("/recommendation")
+    public ResponseEntity<String> getWorkoutRecommendation(@RequestBody WorkoutInput workoutInput) {
+        String recommendation = workoutService.getWorkoutRecommendation(workoutInput);
+        return ResponseEntity.ok(recommendation);
+    }
+
 }
 
